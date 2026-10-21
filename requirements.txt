@@ -4,3 +4,5 @@ email-validator
 uvicorn
 httpx
 pymongo
+#1.craer la interfaz en consola para el consumeo de la api desde el CLI en VIEW
+#2.crear el archivo README

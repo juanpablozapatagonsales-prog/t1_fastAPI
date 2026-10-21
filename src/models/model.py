@@ -10,6 +10,7 @@ class traineeModel(BaseModel):
   record_number:int
 
 class traineeUpdateModel(BaseModel):
+  document: Optional[str] = None
   firstName: Optional[str] = None
   lastName: Optional[str] = None
   email: Optional[EmailStr] = None

@@ -1,47 +1,41 @@
-#importamos los controladores y modelos
+#import controllers and models
 from src.templates.controllers import create_trainee, get_all_trainees, get_trainee_by_ID, update_trainee, delete_trainee
 from src.models.model import traineeModel, traineeUpdateModel
 from fastapi import FastAPI, HTTPException,status
-#  python -m uvicorn src.main:app --reload  para arrancar el servidor
+#  python -m uvicorn src.main:app --reload  for arrancar el servidor
 app = FastAPI(
   title = "Gestion de datos de los aprendices",
   description = "API simple con FastAPI para consumir los datos con los aprendices",
   version = "1.0.0"
 )
-#mensaje de bienvenida
+#menssage of wellcome
 @app.get("/")
 async def root():
   return {"message": "API simple con FastAPI"}
-
-#Registrar aprendices
+#Register aprenticce
 @app.post(
   "/trainee/",response_description="registrar un nuevo aprendiz",
   status_code=status.HTTP_201_CREATED,
 )
-
 def create_trainee_API(trainee:traineeModel):
   #validar si ya existe el documento
   return create_trainee(trainee)
-
 #obtener la lista de aprendizes
 @app.get(
    "/trainee/",response_description="listar todos los aprendizes"
 )
 def get_all_trainees_API():
   return get_all_trainees()
-
-#obtener aprendiz por su id
+# obtain for your id
 @app.get(
   "/trainee/{id}",response_description="obtener un aprendiz por su id"
-
 )
 def get_trainee_by_ID_API(id:str):
   trainee = get_trainee_by_ID(id)
   if not trainee:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Aprendiz con id {id} no encontrado")
   return trainee
-
-#Update un aprendiz por su id
+#Update on aprenticce for your id
 @app.put(
   "/trainee/{id}",response_description=" Update DATA de un aprendiz por su id"
 )
@@ -50,8 +44,7 @@ def update_trainee_API(id:str, trainee:traineeUpdateModel):
   if not trainee:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Aprendiz no encontrado o sin datos que actualizar")
   return trainee
-
-#eliminar un aprendiz por su id
+#delete on aprenticce for your id
 @app.delete(
   "/trainee/{id}",response_description="eliminar un aprendiz por su id"
 )

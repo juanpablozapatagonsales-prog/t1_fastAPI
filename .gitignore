@@ -2,3 +2,4 @@ venv/
 .env
 structure.sh
 src/__pycache__/
+package-lock.json
